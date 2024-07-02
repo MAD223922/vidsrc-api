@@ -1,7 +1,7 @@
 from .subtitle import subfetch
 VERSION = '3.0.0'
 from .vidsrcme import get as vidsrcmeget
-from .filemoon import get as vidsrctoget
+from .superembed import get as vidsrctoget
 from .utils import fetch
 # UTILS
 async def info():
