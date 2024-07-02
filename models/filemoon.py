@@ -15,7 +15,7 @@ async def handle(url) -> dict:
     request = await fetch(url)
     processed_matches = await process_packed_args(request.text)
     unpacked = await unpack(*processed_matches)
-    hls_url = re.search(r'file:"([^"]*)"', unpacked).group(1)
+     hls_urls = re.findall(r"\{file:\"([^\"]*)\"\}", unpacked).group(1)
     return {
         'stream':hls_url,
         'subtitle':subtitles,
