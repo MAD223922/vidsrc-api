@@ -1,8 +1,8 @@
 import asyncio
 from bs4 import BeautifulSoup
-from . import vidsrcpro,superembed
+from . import superembed
 from .utils import fetch
-SOURCES = ["VidSrc PRO","Superembed"]
+SOURCES = ["Superembed"]
 async def get_source(hash:str,url:str):
     SOURCE_REQUEST = await fetch(f"https://vidsrc.stream/rcp/{hash}",headers={"Referer": url})
     try:
@@ -22,7 +22,7 @@ async def get_source(hash:str,url:str):
         if location is None:
             return {"stream":None,"subtitle":[]}
         if "vidsrc.stream" in location:
-            return await vidsrcpro.handle(location,hash,_seed)
+            return await superembed.handle(location,hash,_seed)
         if "multiembed.mov" in location:
             return await superembed.handle(location,hash,_seed)
     except:
